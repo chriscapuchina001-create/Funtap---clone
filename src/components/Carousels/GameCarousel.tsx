@@ -4,7 +4,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import React from "react";
-import { userGames } from "../../public/mock-api/homeData";
+import { userGames } from "../../../public/mock-api/homeData";
 
 export function UserGamesCarousel() {
   const displayGames = userGames.slice(0, 10);

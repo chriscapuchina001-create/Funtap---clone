@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
-import { bannerImage } from "../../public/mock-api/homeData";
+import { bannerImage } from "../../../public/mock-api/homeData";
 
 export function BannerCarousel() {
   const [current, setCurrent] = React.useState(0);

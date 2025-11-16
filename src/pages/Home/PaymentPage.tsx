@@ -1,24 +1,22 @@
-import { BannerCarousel } from "@/components/BannerCarousel";
-import { SheetHomePage } from "@/components/SheetHomePage";
-import { UserGamesCarousel } from "@components/GameCarousel";
-import { Bell, CircleX, EllipsisVertical, Search } from "lucide-react";
-import logo from "../../../public/images/logo/logo-funtap.png";
+import { BannerCarousel } from "@/components/Carousels/BannerCarousel";
+import { UserGamesCarousel } from "@/components/Carousels/GameCarousel";
+import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
+import { useAuthStore } from "@/store/authStore";
+import payImg from "@assets/icons/9-Pay.svg";
+import { CircleX, Search } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   allGames,
   footerNavItems,
   quickAccessItems,
 } from "../../../public/mock-api/homeData";
-import payImg from "@assets/icons/9-Pay.svg";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { useAuthStore } from "@/store/authStore";
-import Navbar from "@/components/Navbar";
-import DialogUser from "@/components/DialogUser";
+import logo from "../../assets/logo/logo-funtap.png";
 
 const PaymentPage = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuthStore();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -28,81 +26,13 @@ const PaymentPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-200 font-display text-gray-700 text-base font-normal relative">
-      <header className="sticky top-0 left-0 z-40 w-full grid place-items-center">
-        <div className="w-full max-w-3xl flex justify-between items-center px-4 py-2 h-14 bg-white border-b! border-[#eeeeee]!">
-          <div className="flex flex-row items-center gap-1">
-            <SheetHomePage />
+      <Header
+        isAuthenticated={isAuthenticated}
+        user={user}
+        navigate={navigate}
+        logout={logout}
+      />
 
-            <img
-              src={logo}
-              alt="logo"
-              className="w-[140px] h-[41px]"
-              style={{
-                userSelect: "none",
-                WebkitUserSelect: "none",
-                MozUserSelect: "none",
-                msUserSelect: "none",
-              }}
-            />
-          </div>
-          {isAuthenticated && user ? (
-            <div className="flex flex-row items-center pr-[15px]! gap-[15px]">
-              <button className="cursor-pointer">
-                <Bell size={22} color="#8E8E93" />
-              </button>
-              <button
-                className="cursor-pointer flex flex-row items-center gap-2"
-                onClick={() => setIsDialogOpen(true)}
-              >
-                <div className="flex flex-row items-center gap-[5px]">
-                  {user.loginType === "email" ? (
-                    <p
-                      className="w-6 h-6 rounded-full bg-[#f8941e] text-white uppercase flex justify-center items-center"
-                      style={{ fontSize: 14 }}
-                    >
-                      G
-                    </p>
-                  ) : (
-                    <p>F</p>
-                  )}
-                  <p
-                    className="text-[#61616a]"
-                    style={{
-                      fontFamily: "Roboto, sans-serif",
-                      fontSize: 12,
-                      letterSpacing: 0.2,
-                      fontWeight: 400,
-                    }}
-                  >
-                    {user.username}
-                  </p>
-                </div>
-                <EllipsisVertical size={20} color="#8E8E93" />
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() => navigate("/login")}
-              className="opacity-90 hover:opacity-100 px-3 py-2 bg-[#ff753a] flex justify-center items-center border-none outline-none cursor-pointer rounded max-h-8 mr-[15px] h-8"
-            >
-              <p
-                className="text-white leading-6"
-                style={{ fontFamily: "Roboto, sans-serif", fontSize: 13 }}
-              >
-                Đăng nhập
-              </p>
-            </button>
-          )}
-        </div>
-      </header>
-      {isAuthenticated && user && (
-        <DialogUser
-          user={user}
-          isDialogOpen={isDialogOpen}
-          setIsDialogOpen={setIsDialogOpen}
-          logout={logout}
-        />
-      )}
       <main className="w-full flex flex-col justify-center items-center gap-0">
         <div className="w-full max-w-3xl">
           <BannerCarousel />
@@ -257,6 +187,7 @@ const PaymentPage = () => {
           </div>
         </div>
       </div>
+
       <div className="w-full flex justify-center items-center sticky bottom-0 left-0 z-40">
         <div className="w-full max-w-3xl flex flex-row justify-center items-center bg-white border-t! border-[#dadada]! relative">
           {isVisible && (

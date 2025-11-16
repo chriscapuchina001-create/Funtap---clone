@@ -1,5 +1,3 @@
-import React from "react";
-
 const Navbar = ({ footerNavItems, navigate }) => {
   const getActiveRoute = (itemName: string): boolean => {
     const routeMap: { [key: string]: string[] } = {
@@ -7,7 +5,7 @@ const Navbar = ({ footerNavItems, navigate }) => {
       Gifcode: ["/gifcode"],
       "Nạp tiền": ["/"],
       "Hỗ trợ": ["/ho-tro"],
-      "Tài khoản": ["/profile"],
+      "Tài khoản": ["/account"],
     };
 
     const routes = routeMap[itemName] || [];
@@ -23,7 +21,7 @@ const Navbar = ({ footerNavItems, navigate }) => {
         return (
           <button
             key={index}
-            className="no-underline w-1/5 m-0 p-0 flex flex-row justify-center items-center h-[58px] gap-1 text-[#8d8d8d] hover:text-[#ee4623]"
+            className="no-underline w-1/5 m-0 p-0 flex flex-row justify-center items-center h-[58px] gap-1 text-[#8d8d8d] hover:text-[#ee4623] transition-colors duration-200"
             onClick={() => {
               navigate(item.link);
             }}
@@ -31,11 +29,11 @@ const Navbar = ({ footerNavItems, navigate }) => {
             <Icon
               size={26}
               strokeWidth={1.5}
-              className="text-inherit"
-              color={isActive ? "#ee4623" : "none"}
+              className="text-inherit transition-colors duration-200 group-hover:text-[#ee4623]"
+              color={isActive ? "#ee4623" : "#8d8d8d"}
             />
             <p
-              className="text-inherit"
+              className="text-inherit transition-colors duration-200 group-hover:text-[#ee4623]"
               style={{
                 fontFamily: "Roboto, sans-serif",
                 fontSize: 15,
