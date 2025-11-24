@@ -1,4 +1,3 @@
-import React from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { CheckCheck } from "lucide-react";
+import React from "react";
 
 interface DropdownItem {
   label: string;
@@ -42,7 +42,7 @@ export function DropdownWithFade({
         align={align}
         side={side}
         className={cn(
-          "w-[365px] h-[667px] rounded-[5px] border border-[#e4e4e4] bg-white shadow-md z-50",
+          "w-[365px] h-[667px] rounded-[5px] border! border-[#f4f4f4]! bg-white shadow-md z-50",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -53,11 +53,29 @@ export function DropdownWithFade({
           className
         )}
       >
-        <div>
-          <p>Thông báo</p>
-          <div>
-            <CheckCheck />
-            <p>Đánh dấu đã đọc</p>
+        <div className="flex flex-row items-center justify-between px-5! py-4! border-b! border-[#e5e5ea]!">
+          <p
+            className="text-[#1a1a1a]"
+            style={{
+              fontSize: 14,
+              fontWeight: 700,
+              fontFamily: "Roboto, sans-serif",
+            }}
+          >
+            Thông báo
+          </p>
+          <div className="flex flex-row items-center gap-1">
+            <CheckCheck size={20} color="#c7c7cc" />
+            <p
+              className="text-[#c7c7cc]"
+              style={{
+                fontSize: 14,
+                fontWeight: 700,
+                fontFamily: "Roboto, sans-serif",
+              }}
+            >
+              Đánh dấu đã đọc
+            </p>
           </div>
         </div>
         {label && (
@@ -74,7 +92,7 @@ export function DropdownWithFade({
             onClick={item.onClick}
             disabled={item.disabled}
             className={cn(
-              "flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
+              "flex cursor-pointer items-center gap-2 rounded-sm px-3! py-3! text-sm outline-none transition-colors",
               "focus:bg-gray-100 focus:text-gray-900",
               "data-disabled:pointer-events-none data-disabled:opacity-50",
               item.destructive

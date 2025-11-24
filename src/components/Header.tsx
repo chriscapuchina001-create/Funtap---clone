@@ -1,9 +1,28 @@
 import { useState } from "react";
 import DialogUser from "./Dialogs/DialogUser";
 import HeaderComponent from "./HeaderComponent";
+import type { NavigateFunction } from "react-router";
 
-const Header = ({ isAuthenticated, user, navigate, logout }) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+type User = {
+  id: string;
+  username: string;
+  loginType: string;
+};
+
+type HeaderProps = {
+  isAuthenticated: boolean;
+  user: User | null;
+  navigate: NavigateFunction;
+  logout: () => void;
+};
+
+const Header: React.FC<HeaderProps> = ({
+  isAuthenticated,
+  user,
+  navigate,
+  logout,
+}) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   return (
     <>

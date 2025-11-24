@@ -1,17 +1,8 @@
 import { DropdownWithFade } from "@/components/Dropdowns/DropdownWithFade";
-import { Button } from "@/components/ui/button";
-import {
-  Bell,
-  CreditCard,
-  HelpCircle,
-  LogOut,
-  Settings,
-  User,
-} from "lucide-react";
-import { useState } from "react";
+import { Bell } from "lucide-react";
 
 const DropdownNotification = () => {
-  const [notificationCount, setNotificationCount] = useState(3);
+  const notificationCount = 3;
 
   const notificationItems = [
     {
@@ -28,12 +19,6 @@ const DropdownNotification = () => {
       label: "Thông báo 3",
       icon: <Bell className="h-4 w-4" />,
       onClick: () => console.log("Thông báo 3 clicked"),
-    },
-    "separator",
-    {
-      label: "Xem tất cả thông báo",
-      icon: <Settings className="h-4 w-4" />,
-      onClick: () => console.log("Xem tất cả clicked"),
     },
   ];
 

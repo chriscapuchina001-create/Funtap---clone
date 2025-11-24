@@ -18,17 +18,17 @@ const ForgotPassword: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-200 flex flex-col">
-      <div className="w-full h-16 bg-[#f04308] flex justify-center items-center shadow-md z-40">
-        <div className="w-full max-w-[660px]! flex justify-start items-center relative">
+    <div className="w-full min-h-screen bg-gray-200 flex flex-col">
+      <div className="w-full h-14 md:h-16 bg-[#f04308] flex justify-center items-center shadow-md z-40">
+        <div className="w-full max-w-[660px]! flex justify-start items-center gap-2 md:relative">
           <button
             onClick={() => window.history.back()}
-            className="w-12 h-12 flex justify-center items-center no-underline absolute left-[-50px]!"
+            className="w-12 h-12 flex justify-center items-center no-underline md:absolute -left-12"
           >
             <ChevronLeft size={26} color="white" />
           </button>
           <h1
-            className="text-white"
+            className="text-white leading-14 md:leading-16"
             style={{
               fontSize: 20,
               fontFamily: "Roboto, sans-serif",
@@ -51,6 +51,7 @@ const ForgotPassword: React.FC = () => {
               fontSize: 14,
               fontFamily: "Roboto, sans-serif",
               fontWeight: 400,
+              lineHeight: 1.429,
             }}
           >
             Điền tên tài khoản, email hoặc số điện thoại của bạn để nhận mã xác
@@ -83,7 +84,7 @@ const ForgotPassword: React.FC = () => {
 
             <button
               type="submit"
-              className="h-10 rounded-lg flex justify-center items-center bg-[#f04308] hover:bg-orange-700 transition-colors duration-200 mt-4 shadow-md"
+              className="h-10 rounded-[4px] flex justify-center items-center bg-[#f04308] hover:bg-orange-700 transition-colors duration-200 mt-4 shadow-md"
             >
               <span
                 className="text-white uppercase tracking-wide"

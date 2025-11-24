@@ -1,18 +1,23 @@
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { footerNavItems } from "../../../public/mock-api/homeData";
-import React from "react";
-import { useNavigate } from "react-router";
 import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import { useAuthStore } from "@/store/authStore";
+import { ChevronRight, Gift, LogOut, User } from "lucide-react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { footerNavItems } from "../../../public/mock-api/homeData";
 
 const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuthStore();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
-    <div className="min-h-screen bg-gray-229 font-roboto text-gray-87 text-base font-normal w-full">
-      <div className="flex flex-col justify-center items-center w-full bg-fafbfb relative">
+    <div className="w-full min-h-screen bg-[#F3F4F4] font-roboto text-gray-87 text-base font-normal">
+      <div className="flex flex-col justify-center items-center w-full bg-[#fafbfb] relative">
         <Header
           isAuthenticated={isAuthenticated}
           user={user}
@@ -20,67 +25,160 @@ const ProfilePage: React.FC = () => {
           logout={logout}
         />
 
-        <div className="flex flex-row items-center py-12 px-24 gap-1">
-          <p className="m-0 p-0 text-14 text-gray-7e">Trang chủ &gt;</p>
-          <p className="m-0 p-0 text-14 text-orange-ee4623">Tài khoản</p>
+        <div className="w-full max-w-3xl flex flex-row justify-start items-start gap-1 bg-white py-[11.25px]! px-6!">
+          <p
+            className="text-[#7e7e7e]"
+            style={{
+              fontSize: 13.5,
+              fontFamily: "Roboto, sans-serif",
+              fontWeight: 400,
+            }}
+          >
+            Trang chủ &gt;
+          </p>
+          <p
+            className="text-[#ee4623]"
+            style={{
+              fontSize: 13.5,
+              fontFamily: "Roboto, sans-serif",
+              fontWeight: 400,
+            }}
+          >
+            Tài khoản
+          </p>
         </div>
 
-        <div className="bg-linear-to-r from-orange-ff753a to-orange-fb5f14 clip-path-ellipse w-full max-w-768 flex flex-row justify-between items-center absolute z-0">
-          <div className="flex flex-row items-center pt-16 pb-100 pl-30 gap-10">
-            <div className="w-12 h-12 flex justify-center items-center bg-linear-to-r from-orange-ee4623 to-orange-fb5f14 rounded-full">
-              <p className="m-0 p-0 text-white">G</p>
-            </div>
-            <div className="flex flex-col">
-              <h2 className="m-0 p-0 font-semibold text-22 leading-1.5 text-white">
-                GgarJnaIkMjX
-              </h2>
-              <p className="m-0 p-0 font-normal text-18 leading-1.429 text-white">
-                ID: <span>382723676</span>
-              </p>
-            </div>
-          </div>
-          <button className="m-0 p-0 outline-none box-border border-none bg-transparent mt-14 mr-26 mb-100 cursor-pointer">
-            <p className="m-0 p-0 font-semibold text-14 leading-1.3 text-white">
-              Cập nhật
-            </p>
-          </button>
-        </div>
-
-        <div className="flex flex-col w-full max-w-768 items-center mt-88">
-          <div className="w-full max-w-736 flex flex-col bg-white shadow-sm rounded-lg mx-16 mb-16 py-8 relative">
-            <MenuButton icon="0" text="Gifcode của tôi" />
-            <MenuButton icon="0" text="Funvip" rightText="Hạng Hội Viên" />
-            <MenuButton icon="0" text="Theo dõi yêu cầu hỗ trợ" />
-          </div>
-
-          <div className="w-full max-w-736 flex flex-col bg-white shadow-sm rounded-lg mx-16 mb-16 py-8">
-            <MenuButton
-              icon="0"
-              text="Cài đặt"
-              rightText="Mật khẩu & Thanh toán"
-            />
-            <MenuButton icon="0" text="Lịch sử đăng nhập" />
-          </div>
-
-          <div className="w-full max-w-736 flex flex-col bg-white shadow-sm rounded-lg mx-16 mb-16 py-8">
-            <MenuButton icon="0" text="Điều khoản sử dụng" />
-            <MenuButton icon="0" text="Chính sách bảo mật" />
-            <MenuButton icon="0" text="Liên hệ" />
-          </div>
-
-          <div className="w-full max-w-736 mb-16">
-            <button className="border-none outline-none w-full bg-white shadow-sm rounded-lg cursor-pointer">
-              <div className="flex flex-row justify-center items-center gap-10 py-12 px-16">
-                <p className="text-16 text-orange-ee4623 m-0">0</p>
-                <p className="text-16 text-orange-ee4623 font-roboto m-0">
-                  Đăng xuất
-                </p>
+        <div className="bg-linear-to-r! from-[#ff753a] to-[#fb5f14] clip-path-ellipse! w-full max-w-3xl h-[178px] flex flex-row justify-between items-center z-0 absolute top-25 rounded-bl-[90px] rounded-br-[90px]">
+          <div className="flex flex-row items-center pt-4! pb-20! pl-7! pr-7! gap-3">
+            {isAuthenticated && user ? (
+              <>
+                <div className="w-12.5 h-12.5 flex justify-center items-center bg-linear-to-r bg-[#67AD3F] rounded-full text-white">
+                  {user?.loginType === "email" ? (
+                    <p style={{ fontSize: 16 }}>G</p>
+                  ) : (
+                    <p style={{ fontSize: 16 }}>F</p>
+                  )}
+                </div>
+                <div className="flex flex-col gap-3">
+                  <h2
+                    className="leading-1.5 text-white"
+                    style={{
+                      fontSize: 22.5,
+                      fontFamily: "Roboto, sans-serif",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {user?.username}
+                  </h2>
+                  <p
+                    className="text-white"
+                    style={{
+                      fontSize: 18,
+                      fontFamily: "Roboto, sans-serif",
+                      fontWeight: 300,
+                    }}
+                  >
+                    ID: <span>{user?.id}</span>
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-row items-center gap-3">
+                <div className="w-12.5 h-12.5 rounded-full bg-[#F3F4F4] flex justify-center items-center">
+                  <User size={30} color="#767676" />
+                </div>
+                <h2
+                  className="text-white"
+                  style={{
+                    fontSize: 22,
+                    fontFamily: "Roboto, sans-serif",
+                    fontWeight: 600,
+                  }}
+                >
+                  Đăng nhập
+                </h2>
               </div>
-            </button>
+            )}
           </div>
-
-          <Footer />
+          {isAuthenticated && user && (
+            <button className="pb-20! pr-7! cursor-pointer">
+              <p
+                className="text-white"
+                style={{
+                  fontSize: 14,
+                  fontFamily: "Roboto, sans-serif",
+                  fontWeight: 500,
+                }}
+              >
+                Cập nhật
+              </p>
+            </button>
+          )}
         </div>
+
+        {isAuthenticated && user ? (
+          <div className="flex flex-col w-full max-w-3xl items-center mt-26! bg-white">
+            <div className="w-full max-w-[736px] flex flex-col bg-white shadow-md rounded-lg mb-4! py-2! relative">
+              <MenuButton icon={<Gift />} text="Giftcode của tôi" />
+              <MenuButton
+                icon={<Gift />}
+                text="Funvip"
+                rightText="Hạng Hội Viên"
+              />
+              <MenuButton icon={<Gift />} text="Theo dõi yêu cầu hỗ trợ" />
+            </div>
+
+            <div className="w-full max-w-[736px] flex flex-col bg-white shadow-md rounded-lg mb-4! py-2!">
+              <MenuButton
+                icon={<Gift />}
+                text="Cài đặt"
+                rightText="Mật khẩu & Thanh toán"
+              />
+              <MenuButton icon={<Gift />} text="Lịch sử đăng nhập" />
+            </div>
+
+            <div className="w-full max-w-[736px] flex flex-col bg-white shadow-md rounded-lg mb-4! py-2!">
+              <MenuButton icon={<Gift />} text="Điều khoản sử dụng" />
+              <MenuButton icon={<Gift />} text="Chính sách bảo mật" />
+              <MenuButton icon={<Gift />} text="Liên hệ" />
+            </div>
+
+            <div className="w-full max-w-[736px] mb-4!">
+              <button
+                className="border-none outline-none w-full bg-white shadow-md rounded-lg cursor-pointer"
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                <div className="flex flex-row justify-center items-center gap-2 px-4! py-3!">
+                  <LogOut color="#ee4623" size={20} />
+                  <p
+                    className="text-[#ee4623]"
+                    style={{
+                      fontSize: 16,
+                      fontFamily: "Roboto, sans-serif",
+                      fontWeight: 400,
+                    }}
+                  >
+                    Đăng xuất
+                  </p>
+                </div>
+              </button>
+            </div>
+
+            <Footer />
+          </div>
+        ) : (
+          <div className="flex flex-col w-full max-w-3xl items-center mt-26! bg-white">
+            <div className="w-full max-w-[736px] flex flex-col bg-white shadow-md rounded-lg mb-4! py-2! relative">
+              <MenuButton icon={<Gift />} text="Hướng dẫn" />
+              <MenuButton icon={<Gift />} text="Tin tức" />
+              <MenuButton icon={<Gift />} text="Hỗ trợ" />
+            </div>
+            <Footer />
+          </div>
+        )}
 
         <div className="w-full flex justify-center items-center sticky bottom-0 left-0 z-40">
           <div className="w-full max-w-3xl flex flex-row justify-center items-center bg-white border-t! border-[#dadada]! relative">
@@ -93,27 +191,36 @@ const ProfilePage: React.FC = () => {
 };
 
 type MenuButtonProps = {
-  icon: string;
+  icon: React.ReactNode;
   text: string;
   rightText?: string;
 };
 
 const MenuButton: React.FC<MenuButtonProps> = ({ icon, text, rightText }) => {
   return (
-    <button className="m-0 p-0 border-none outline-none bg-transparent flex justify-between items-center px-15 pl-0">
-      <div className="flex flex-row justify-start items-center">
-        <p className="m-0 p-0 w-12 h-12 flex justify-center items-center text-24 text-gray-1f">
-          {icon}
+    <button className="border-none outline-none bg-transparent hover:bg-[#F7F7F7] flex justify-between items-center cursor-pointer px-4! py-3!">
+      <div className="flex flex-row justify-start items-center gap-3">
+        <p className="flex justify-center items-center">{icon}</p>
+        <p
+          className="text-[#1f1f1f]"
+          style={{
+            fontSize: 15.5,
+            fontFamily: "Roboto, sans-serif",
+            fontWeight: 400,
+          }}
+        >
+          {text}
         </p>
-        <p className="m-0 p-0 text-15.75 text-gray-1f">{text}</p>
       </div>
       {rightText ? (
-        <div className="flex flex-row items-center gap-10">
-          <p className="text-13.5 text-gray-76 m-0 p-0">{rightText}</p>
-          <p className="m-0 p-0 text-15.75 text-gray-1f">&gt;</p>
+        <div className="flex flex-row items-center gap-2">
+          <p className="text-[#767676]" style={{ fontSize: 13.5 }}>
+            {rightText}
+          </p>
+          <ChevronRight size={16} color="#D6D6D6" strokeWidth={1.5} />
         </div>
       ) : (
-        <p className="m-0 p-0 text-15.75 text-gray-1f">&gt;</p>
+        <ChevronRight size={16} color="#D6D6D6" strokeWidth={1.5} />
       )}
     </button>
   );

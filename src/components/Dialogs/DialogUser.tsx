@@ -7,7 +7,25 @@ import {
 } from "@/components/ui/dialog";
 import { CircleDotDashed, CirclePoundSterling, LogOut } from "lucide-react";
 
-const DialogUser = ({ user, logout, isDialogOpen, setIsDialogOpen }) => {
+type User = {
+  id: string;
+  username: string;
+  loginType: string;
+};
+
+type DialogUserProps = {
+  user: User;
+  isDialogOpen: boolean;
+  setIsDialogOpen: (isOpen: boolean) => void;
+  logout: () => void;
+};
+
+const DialogUser: React.FC<DialogUserProps> = ({
+  user,
+  logout,
+  isDialogOpen,
+  setIsDialogOpen,
+}) => {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogContent className="top-[40%] animate-in! slide-in-from-top! duration-300! [&>button]:hidden  w-[452px]">

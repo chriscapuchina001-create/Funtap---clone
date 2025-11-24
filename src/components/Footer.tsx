@@ -6,7 +6,7 @@ import logoImg from "@assets/logo/logo-funtap.png";
 export default function Footer() {
   return (
     <div className="flex flex-col justify-center items-center w-full">
-      <div className="bg-gray-100 w-full max-w-3xl flex flex-col justify-center items-center px-[15px]! pt-6! pb-4!">
+      <div className="bg-[#F7F7F7] w-full max-w-3xl flex flex-col justify-center items-center px-[15px]! pt-6! pb-4!">
         <div className="pt-8 pb-5 flex flex-col justify-center items-center text-center">
           <div className="flex flex-row items-center gap-3 mb-5!">
             <img src={logoImg} alt="logoImg" className="w-[118px] h-10" />

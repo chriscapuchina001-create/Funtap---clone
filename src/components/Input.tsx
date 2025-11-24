@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({
           required={required}
           disabled={disabled}
           className={`
-            font-display w-full py-2 border-b-2 focus:border-[#F04308] outline-none text-[#353535] pr-10
+            font-display w-full py-2 border-b-2 focus:border-[#F04308] outline-none text-[#000000] pr-8.5
             ${error ? "border-red-500" : "border-gray-300"}
             ${disabled ? "bg-transparent opacity-50" : "bg-transparent"}
           `}
@@ -65,13 +65,24 @@ const Input: React.FC<InputProps> = ({
             type="button"
             onClick={togglePasswordVisibility}
             disabled={disabled}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none disabled:opacity-50 cursor-pointer"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none disabled:opacity-50 cursor-pointer"
           >
             {showPassword ? <EyeOff /> : <Eye />}
           </button>
         )}
       </div>
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      {error && (
+        <p
+          className="mt-2! text-sm text-red-600"
+          style={{
+            fontFamily: "Roboto, sans-serif",
+            fontWeight: 500,
+            fontSize: 12,
+          }}
+        >
+          {error}
+        </p>
+      )}
     </div>
   );
 };

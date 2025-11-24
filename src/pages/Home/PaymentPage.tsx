@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { useAuthStore } from "@/store/authStore";
 import payImg from "@assets/icons/9-Pay.svg";
 import { CircleX, Search } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   allGames,
@@ -19,6 +19,10 @@ const PaymentPage = () => {
   const { user, isAuthenticated, logout } = useAuthStore();
 
   const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const handleClose = () => {
     setIsVisible(false);

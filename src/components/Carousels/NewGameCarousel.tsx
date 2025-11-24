@@ -5,7 +5,30 @@ import {
 } from "@/components/ui/carousel";
 import { Facebook, Home } from "lucide-react";
 
-export default function NewGameCarousel({ newGames }) {
+type Game = {
+  name: string;
+  image: string;
+  releaseDate?: string;
+};
+
+type NewGameCarouselProps = {
+  newGames: Game[];
+};
+
+const NewGameCarousel: React.FC<NewGameCarouselProps> = ({ newGames }) => {
+  const handleGameClick = (game: Game) => {
+    console.log("Game clicked:", game.name);
+  };
+
+  const handleShareClick = (
+    e: React.MouseEvent,
+    platform: string,
+    game: Game
+  ) => {
+    e.stopPropagation();
+    console.log(`Share ${game.name} on ${platform}`);
+  };
+
   return (
     <div className="w-full">
       <Carousel
@@ -18,7 +41,10 @@ export default function NewGameCarousel({ newGames }) {
         <CarouselContent className="-ml-2">
           {newGames.map((game, index) => (
             <CarouselItem key={index} className="mr-4! basis-auto">
-              <div className="w-[323.5px]">
+              <button
+                onClick={() => handleGameClick(game)}
+                className="w-[323.5px] cursor-pointer"
+              >
                 <img
                   src={game.image}
                   alt={game.name}
@@ -49,16 +75,28 @@ export default function NewGameCarousel({ newGames }) {
                       Open beta vào {game.releaseDate}
                     </p>
                   </div>
-                  <div className="flex gap-4">
-                    <Home color="#F36E55" />
-                    <Facebook color="#5192F5" />
+                  <div className="flex gap-2 shrink-0">
+                    <button
+                      onClick={(e) => handleShareClick(e, "home", game)}
+                      className="p-1 hover:bg-gray-100 rounded transition-colors"
+                    >
+                      <Home size={18} color="#F36E55" />
+                    </button>
+                    <button
+                      onClick={(e) => handleShareClick(e, "facebook", game)}
+                      className="p-1 hover:bg-gray-100 rounded transition-colors"
+                    >
+                      <Facebook size={18} color="#5192F5" />
+                    </button>
                   </div>
                 </div>
-              </div>
+              </button>
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
     </div>
   );
-}
+};
+
+export default NewGameCarousel;

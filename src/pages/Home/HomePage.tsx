@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import { useAuthStore } from "@/store/authStore";
 import background from "@assets/background/1755836841_95.png";
 import { ChevronRight } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import {
   categories,
@@ -21,6 +21,10 @@ import {
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuthStore();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-gray-200 font-roboto text-gray-700 text-base font-normal">
@@ -45,7 +49,7 @@ const HomePage: React.FC = () => {
           </div>
           <div className="w-full flex flex-col justify-center items-center mb-7!">
             <div className=" w-full max-w-[728px] absolute z-20 top-0 pt-15!">
-              <div className="px-6! flex flex-col mb-7!">
+              <div className="px-4! md:px-6! flex flex-col mb-7!">
                 <h2
                   className="text-[#1f1f1f] mb-5!"
                   style={{
@@ -56,17 +60,21 @@ const HomePage: React.FC = () => {
                 >
                   Dịch vụ
                 </h2>
-                <div className="flex flex-row justify-between px-2!">
+                <div className="w-full grid grid-cols-4 md:flex md:flex-row justify-between">
                   {services.map((service, index) => (
-                    <div
+                    <button
                       key={index}
-                      className="flex flex-col items-center gap-2"
+                      className="flex flex-col items-center gap-2 text-[#222222] hover:text-[#ee4623] cursor-pointer"
                     >
-                      <div className="w-12.5 h-12.5 flex items-center justify-center text-white text-lg">
-                        <img src={service.icon} alt="service-img" />
+                      <div className="flex items-center justify-center">
+                        <img
+                          src={service.icon}
+                          alt="service-img"
+                          className="w-[50px] h-[58px]"
+                        />
                       </div>
                       <span
-                        className="text-[#1f1f1f] font-roboto text-center"
+                        className="text-inherit text-center"
                         style={{
                           fontSize: 13.5,
                           fontWeight: 400,
@@ -75,7 +83,7 @@ const HomePage: React.FC = () => {
                       >
                         {service.name}
                       </span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -164,7 +172,7 @@ const HomePage: React.FC = () => {
               >
                 Tin tức - Sự kiện
               </h2>
-              <button className="flex flex-row items-center gap-1">
+              <button className="flex flex-row items-center gap-1 cursor-pointer">
                 <p
                   className="text-[#ee4623]"
                   style={{
@@ -181,18 +189,18 @@ const HomePage: React.FC = () => {
 
             <div className="flex flex-col px-6">
               {newsItems.map((news, index) => (
-                <div
+                <button
                   key={index}
-                  className="flex py-3! gap-5 border-b! border-gray-200! last:border-b-0!"
+                  className="flex py-3! gap-5 border-b! border-gray-200! last:border-b-0! text-[#1f1f1f] hover:text-[#ee4623]"
                 >
                   <img
                     src={news.image}
                     alt="img"
-                    className="w-[235px] h-[135px] rounded-[8px] object-cover"
+                    className="w-[235px] h-[135px] rounded-[8px] object-cover cursor-pointer hover:opacity-80"
                   />
                   <div className="flex flex-col justify-start items-start gap-2 flex-1">
                     <h3
-                      className="text-[#1f1f1f]"
+                      className="text-inherit cursor-pointer"
                       style={{
                         fontSize: 15.75,
                         fontWeight: 400,
@@ -242,7 +250,7 @@ const HomePage: React.FC = () => {
                       )}
                     </p>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>

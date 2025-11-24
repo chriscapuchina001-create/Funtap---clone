@@ -1,10 +1,28 @@
-const Navbar = ({ footerNavItems, navigate }) => {
+import type { NavigateFunction } from "react-router";
+
+type FooterNavItem = {
+  name: string;
+  icon: React.ComponentType<{
+    size?: number;
+    strokeWidth?: number;
+    className?: string;
+    color?: string;
+  }>;
+  link: string;
+};
+
+type NavbarProps = {
+  footerNavItems: FooterNavItem[];
+  navigate: NavigateFunction;
+};
+
+const Navbar: React.FC<NavbarProps> = ({ footerNavItems, navigate }) => {
   const getActiveRoute = (itemName: string): boolean => {
     const routeMap: { [key: string]: string[] } = {
       Playfun: ["/playfun"],
-      Gifcode: ["/gifcode"],
+      Giftcode: ["/giftcode"],
       "Nạp tiền": ["/"],
-      "Hỗ trợ": ["/ho-tro"],
+      "Hỗ trợ": ["/support"],
       "Tài khoản": ["/account"],
     };
 

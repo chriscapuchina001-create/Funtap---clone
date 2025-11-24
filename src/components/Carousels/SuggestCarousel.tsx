@@ -4,7 +4,18 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-export default function SuggestCarousel({ recommendedGames }) {
+type Game = {
+  name: string;
+  image: string;
+};
+
+type SuggestCarouselProps = {
+  recommendedGames: Game[];
+};
+
+const SuggestCarousel: React.FC<SuggestCarouselProps> = ({
+  recommendedGames,
+}) => {
   return (
     <div className="flex overflow-x-auto mb-7!">
       <Carousel
@@ -19,7 +30,7 @@ export default function SuggestCarousel({ recommendedGames }) {
             <CarouselItem key={index} className="mr-4! basis-auto">
               <button
                 key={index}
-                className="flex flex-col items-center shrink-0 w-30 gap-2"
+                className="flex flex-col items-center shrink-0 w-30 gap-2 text-[#222222] hover:text-[#ee4623] cursor-pointer"
               >
                 <img
                   src={game.image}
@@ -27,7 +38,7 @@ export default function SuggestCarousel({ recommendedGames }) {
                   className="w-30 h-30 rounded-[12px]"
                 />
                 <p
-                  className="text-[#1f1f1f] line-clamp-2"
+                  className="text-inherit line-clamp-2"
                   style={{ fontSize: 14, fontFamily: "Roboto, sans-serif" }}
                 >
                   {game.name}
@@ -39,4 +50,6 @@ export default function SuggestCarousel({ recommendedGames }) {
       </Carousel>
     </div>
   );
-}
+};
+
+export default SuggestCarousel;

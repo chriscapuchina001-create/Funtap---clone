@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PaymentPage />} />
         <Route path="/playfun" element={<HomePage />} />
-        <Route path="/gifcode" element={<GiftcodePage />} />
+        <Route path="/giftcode" element={<GiftcodePage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/account" element={<ProfilePage />} />
 

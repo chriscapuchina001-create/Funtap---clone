@@ -1,9 +1,30 @@
 import { EllipsisVertical } from "lucide-react";
+import type { NavigateFunction } from "react-router";
 import logo from "../assets/logo/logo-funtap.png";
-import { SheetHomePage } from "./SheetHomePage";
 import DropdownNotification from "./Dropdowns/DropdownNotification";
+import { SheetHomePage } from "./SheetHomePage";
 
-const HeaderComponent = ({
+type User = {
+  id: string;
+  username: string;
+  loginType: string;
+};
+
+type HeaderComponentProps = {
+  navigate: NavigateFunction;
+  isAuthenticated: boolean;
+  user: User | null;
+  setIsDialogOpen: (isOpen: boolean) => void;
+};
+
+const formatUsername = (username: string, maxLength: number = 6): string => {
+  if (username.length <= maxLength) {
+    return username;
+  }
+  return username.substring(0, maxLength) + "...";
+};
+
+const HeaderComponent: React.FC<HeaderComponentProps> = ({
   navigate,
   isAuthenticated,
   user,
@@ -18,7 +39,7 @@ const HeaderComponent = ({
           <img
             src={logo}
             alt="logo"
-            className="w-[140px] h-[41px]"
+            className="w-[120px] xs:w-[140px] xs:h-[41px]"
             style={{
               userSelect: "none",
               WebkitUserSelect: "none",
@@ -54,7 +75,7 @@ const HeaderComponent = ({
                     fontWeight: 400,
                   }}
                 >
-                  {user.username}
+                  {formatUsername(user.username)}
                 </p>
               </div>
               <EllipsisVertical size={20} color="#8E8E93" />
