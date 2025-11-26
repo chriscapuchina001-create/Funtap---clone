@@ -2,6 +2,7 @@
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  mode: "jit",
   theme: {
     extend: {
       colors: {
@@ -39,7 +40,7 @@ export default {
       },
       fontFamily: {
         helvetica: ["HelveticaNeue", "sans-serif"],
-        display: ["Roboto", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
       fontSize: {
         13.5: "13.5px",
@@ -71,7 +72,7 @@ export default {
         },
       },
       screens: {
-        xs: "639px",
+        xs: "375px",
         sm: "640px",
         md: "768px",
         lg: "1024px",

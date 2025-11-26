@@ -30,20 +30,13 @@ export function UserGamesCarousel() {
   };
 
   return (
-    <div className="flex flex-col bg-white h-[241px]! relative">
+    <div className="flex flex-col bg-white h-[220px] md:h-[241px] relative">
       <div className="px-[15px]! border-b! border-[#f2f2f2]! min-h-[55.29px] flex items-center">
-        <h3
-          className="leading-6 text-[#575757]"
-          style={{
-            fontFamily: "Roboto, sans-serif",
-            fontSize: 17,
-            fontWeight: 700,
-          }}
-        >
+        <h3 className="text-[#575757] font-roboto text-[17px] font-bold">
           Game của bạn
         </h3>
       </div>
-      <div className="p-4">
+      <div className="">
         <Carousel
           setApi={setApi}
           opts={{
@@ -52,11 +45,11 @@ export function UserGamesCarousel() {
           }}
           className="w-full"
         >
-          <CarouselContent className="pl-1! pt-[15px]!">
+          <CarouselContent className="pt-[15px]! pl-2!">
             {displayGames.map((game, index) => (
               <CarouselItem
                 key={index}
-                className="pl-2 basis-1/5 md:basis-1/6 lg:basis-1/8 min-w-[150px] mr-1!"
+                className="w-full max-w-[100px] md:max-w-[150px] mr-1!"
               >
                 <a
                   href="#"
@@ -68,20 +61,13 @@ export function UserGamesCarousel() {
                     msUserSelect: "none",
                   }}
                 >
-                  <div className="flex flex-col justify-center items-center gap-2.5 p-2">
+                  <div className="flex flex-col justify-center items-center gap-2.5">
                     <img
                       src={game.image}
                       alt={game.name}
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-lg object-cover hover:scale-105 transition-transform duration-200 use"
+                      className="w-15 h-15 md:w-20 md:h-20 rounded-lg object-cover hover:scale-105 transition-transform duration-200 use"
                     />
-                    <h4
-                      className="m-0 px-2.5! text-gray-800 text-center overflow-hidden text-ellipsis whitespace-normal line-clamp-2"
-                      style={{
-                        fontFamily: "Roboto, sans-serif",
-                        fontSize: 12,
-                        fontWeight: 400,
-                      }}
-                    >
+                    <h4 className="m-0 px-2.5! text-[#222222] text-center overflow-hidden text-ellipsis whitespace-normal line-clamp-2 font-roboto text-[11px] md:text-xs font-medium">
                       {game.name}
                     </h4>
                   </div>

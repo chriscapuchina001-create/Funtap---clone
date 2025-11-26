@@ -38,12 +38,19 @@ const NewGameCarousel: React.FC<NewGameCarouselProps> = ({ newGames }) => {
         }}
         className="w-full"
       >
-        <CarouselContent className="-ml-2">
+        <CarouselContent className="">
           {newGames.map((game, index) => (
             <CarouselItem key={index} className="mr-4! basis-auto">
-              <button
+              <div
                 onClick={() => handleGameClick(game)}
                 className="w-[323.5px] cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleGameClick(game);
+                  }
+                }}
               >
                 <img
                   src={game.image}
@@ -51,7 +58,7 @@ const NewGameCarousel: React.FC<NewGameCarouselProps> = ({ newGames }) => {
                   className="rounded-t-2xl w-[323px] h-[183px] object-cover"
                 />
                 <div className="flex items-center pt-3! px-4! pb-4! bg-white rounded-b-2xl">
-                  <div className="flex flex-col py-3 pl-4 w-full justify-between items-start gap-1">
+                  <div className="flex flex-col w-full justify-between items-start gap-1">
                     <h3
                       className="text-sm font-bold text-gray-900 leading-tight"
                       style={{
@@ -90,7 +97,7 @@ const NewGameCarousel: React.FC<NewGameCarouselProps> = ({ newGames }) => {
                     </button>
                   </div>
                 </div>
-              </button>
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>

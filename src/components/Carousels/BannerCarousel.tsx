@@ -7,7 +7,16 @@ import Autoplay from "embla-carousel-autoplay";
 import * as React from "react";
 import { bannerImage } from "../../../public/mock-api/homeData";
 
-export function BannerCarousel() {
+type BannerCarouselProps = {
+  className?: string;
+  rounded?: string;
+  itemClassName?: string;
+};
+
+export function BannerCarousel({
+  rounded,
+  itemClassName,
+}: BannerCarouselProps) {
   const [current, setCurrent] = React.useState(0);
   const [isPaused, setIsPaused] = React.useState(false);
 
@@ -64,7 +73,7 @@ export function BannerCarousel() {
   return (
     <div className="relative">
       <Carousel
-        className="w-full max-w-3xl mx-auto"
+        className="w-full mx-auto"
         plugins={[plugin.current]}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -77,11 +86,11 @@ export function BannerCarousel() {
         <CarouselContent>
           {bannerImage.map((banner) => (
             <CarouselItem key={banner.id}>
-              <div className="p-1">
+              <div className={itemClassName}>
                 <img
                   src={banner.image}
                   alt={`Banner ${banner.id}`}
-                  className="w-full h-full max-w-3xl max-h-[340px] object-cover "
+                  className={`w-full h-full max-h-[340px] object-cover ${rounded}`}
                   style={{
                     userSelect: "none",
                     WebkitUserSelect: "none",

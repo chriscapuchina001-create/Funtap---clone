@@ -3,6 +3,7 @@ import type { NavigateFunction } from "react-router";
 import logo from "../assets/logo/logo-funtap.png";
 import DropdownNotification from "./Dropdowns/DropdownNotification";
 import { SheetHomePage } from "./SheetHomePage";
+import { formatText } from "@/utils/formatUtils";
 
 type User = {
   id: string;
@@ -17,13 +18,6 @@ type HeaderComponentProps = {
   setIsDialogOpen: (isOpen: boolean) => void;
 };
 
-const formatUsername = (username: string, maxLength: number = 6): string => {
-  if (username.length <= maxLength) {
-    return username;
-  }
-  return username.substring(0, maxLength) + "...";
-};
-
 const HeaderComponent: React.FC<HeaderComponentProps> = ({
   navigate,
   isAuthenticated,
@@ -32,14 +26,14 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
 }) => {
   return (
     <header className="sticky top-0 left-0 z-40 w-full grid place-items-center">
-      <div className="w-full max-w-3xl flex justify-between items-center px-4 py-2 h-14 bg-white border-b! border-[#eeeeee]!">
+      <div className="w-full flex justify-between items-center px-4 py-2 h-14 bg-white border-b! border-[#eeeeee]! shadow-md">
         <div className="flex flex-row items-center gap-1">
           <SheetHomePage />
 
           <img
             src={logo}
             alt="logo"
-            className="w-[120px] xs:w-[140px] xs:h-[41px]"
+            className="w-[120px] sm:w-[140px] sm:h-[41px]"
             style={{
               userSelect: "none",
               WebkitUserSelect: "none",
@@ -57,25 +51,14 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
             >
               <div className="flex flex-row items-center gap-[5px]">
                 {user.loginType === "email" ? (
-                  <p
-                    className="w-6 h-6 rounded-full bg-[#f8941e] text-white uppercase flex justify-center items-center"
-                    style={{ fontSize: 14 }}
-                  >
+                  <p className="w-6 h-6 rounded-full bg-[#f8941e] text-white uppercase flex justify-center items-center font-poppins text-sm font-bold">
                     G
                   </p>
                 ) : (
                   <p>F</p>
                 )}
-                <p
-                  className="text-[#61616a]"
-                  style={{
-                    fontFamily: "Roboto, sans-serif",
-                    fontSize: 12,
-                    letterSpacing: 0.2,
-                    fontWeight: 400,
-                  }}
-                >
-                  {formatUsername(user.username)}
+                <p className="text-[#61616a] font-poppins text-xs font-normal">
+                  {formatText(user.username, 7)}
                 </p>
               </div>
               <EllipsisVertical size={20} color="#8E8E93" />

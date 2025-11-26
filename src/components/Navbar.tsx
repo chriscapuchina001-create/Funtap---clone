@@ -39,25 +39,24 @@ const Navbar: React.FC<NavbarProps> = ({ footerNavItems, navigate }) => {
         return (
           <button
             key={index}
-            className="no-underline w-1/5 m-0 p-0 flex flex-row justify-center items-center h-[58px] gap-1 text-[#8d8d8d] hover:text-[#ee4623] transition-colors duration-200"
-            onClick={() => {
-              navigate(item.link);
-            }}
+            className="group no-underline w-1/5 h-[58px] flex flex-col md:flex-row justify-center items-center gap-0 md:gap-1 text-[#8d8d8d] hover:text-[#ee4623] transition-colors duration-200 cursor-pointer"
+            onClick={() => navigate(item.link)}
           >
             <Icon
-              size={26}
               strokeWidth={1.5}
-              className="text-inherit transition-colors duration-200 group-hover:text-[#ee4623]"
-              color={isActive ? "#ee4623" : "#8d8d8d"}
+              className={`
+                transition-colors duration-200 w-6 h-6
+                ${isActive ? "text-[#ee4623]" : "text-[#8d8d8d]"}
+                group-hover:text-[#ee4623]
+              `}
             />
+
             <p
-              className="text-inherit transition-colors duration-200 group-hover:text-[#ee4623]"
-              style={{
-                fontFamily: "Roboto, sans-serif",
-                fontSize: 15,
-                fontWeight: 400,
-                color: isActive ? "#ee4623" : "inherit",
-              }}
+              className={`
+                transition-colors duration-200 font-roboto text-[11px] md:text-[15px] font-normal
+                ${isActive ? "text-[#ee4623]" : "text-inherit"}
+                group-hover:text-[#ee4623]
+              `}
             >
               {item.name}
             </p>

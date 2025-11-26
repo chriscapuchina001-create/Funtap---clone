@@ -19,7 +19,7 @@ const GiftcodeCarousel: React.FC<GiftcodeCarouselProps> = ({
       <CarouselContent>
         {giftcodeChunks.map((chunk, chunkIndex) => (
           <CarouselItem key={chunkIndex}>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {chunk.map((item, index) => (
                 <button
                   key={`${chunkIndex}-${index}`}
@@ -31,24 +31,10 @@ const GiftcodeCarousel: React.FC<GiftcodeCarouselProps> = ({
                     className="w-16 h-16 bg-black rounded-xl flex items-center justify-center text-white text-sm shrink-0"
                   />
                   <div className="flex flex-col justify-center items-start w-full min-w-0 h-full border-b! border-[#f2f2f2]!">
-                    <h3
-                      className="text-inherit uppercase truncate"
-                      style={{
-                        fontSize: 15.5,
-                        fontFamily: "Roboto, sans-serif",
-                        fontWeight: 400,
-                      }}
-                    >
+                    <h3 className="text-inherit truncate font-poppins text-[14px] md:text-[15.5px] font-normal">
                       {item.title}
                     </h3>
-                    <p
-                      className="text-[#61616a] truncate"
-                      style={{
-                        fontSize: 13.5,
-                        fontFamily: "Roboto, sans-serif",
-                        fontWeight: 400,
-                      }}
-                    >
+                    <p className="text-[#61616a] truncate font-poppins text-[12px] md:text-[13.5px] font-normal">
                       {item.description}
                     </p>
                   </div>

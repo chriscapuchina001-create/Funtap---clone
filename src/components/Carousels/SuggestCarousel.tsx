@@ -17,7 +17,7 @@ const SuggestCarousel: React.FC<SuggestCarouselProps> = ({
   recommendedGames,
 }) => {
   return (
-    <div className="flex overflow-x-auto mb-7!">
+    <div className="flex overflow-x-auto mb-7! pr-2.5! md:pr-1!">
       <Carousel
         opts={{
           align: "start",
@@ -37,10 +37,7 @@ const SuggestCarousel: React.FC<SuggestCarouselProps> = ({
                   alt="image"
                   className="w-30 h-30 rounded-[12px]"
                 />
-                <p
-                  className="text-inherit line-clamp-2"
-                  style={{ fontSize: 14, fontFamily: "Roboto, sans-serif" }}
-                >
+                <p className="text-inherit line-clamp-2 font-normal text-sm">
                   {game.name}
                 </p>
               </button>

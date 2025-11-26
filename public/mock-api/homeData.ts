@@ -71,6 +71,19 @@ export interface CategoryItem {
   name: string;
 }
 
+export type GiftcodeItem = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
+export type GameItem = {
+  id: number;
+  name: string;
+  image: string;
+};
+
 const IMAGES_BASE_PATH = "../images";
 
 export const quickAccessItems: QuickAccessItem[] = [
@@ -281,9 +294,9 @@ export const allGames: Game[] = [
 
 export const footerNavItems: any[] = [
   { name: "Playfun", icon: House, link: "/playfun" },
-  { name: "Gifcode", icon: Gift, link: "/gifcode" },
+  { name: "Giftcode", icon: Gift, link: "/giftcode" },
   { name: "Nạp tiền", icon: Database, link: "/" },
-  { name: "Hỗ trợ", icon: Headset, link: "/ho-tro" },
+  { name: "Hỗ trợ", icon: Headset, link: "/support" },
   { name: "Tài khoản", icon: UserRound, link: "/account" },
 ];
 
@@ -441,7 +454,8 @@ export const newsItems: NewsItem[] = [
     date: "29/10/2025, 17:05",
   },
   {
-    title: "MOMO TẶNG BẠN CŨ 5K NẠP GAME!",
+    title:
+      "CHÀO MỪNG 80 NĂM NGÀY QUỐC KHÁNH NƯỚC CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM (2/9/1945 - 2/9/2025)",
     image: newImg3,
     author: "Funtap",
     category: "Tin tức",
@@ -462,4 +476,27 @@ export const newsItems: NewsItem[] = [
     category: "Tin tức",
     date: "29/10/2025, 17:05",
   },
+];
+
+export const GiftcodeItems: GiftcodeItem[] = Array(5).fill({
+  id: 1,
+  title: "Đại hiệp 2025",
+  description: "Đại hiệp Tap Tap",
+  image: newGameImg1,
+});
+
+export const gameItems: GameItem[] = [
+  { id: 1, name: "3Q Nghịch Chuyển Thời Không", image: newGameImg1 },
+  { id: 2, name: "3Q Nghịch Chuyển Thời Không", image: newGameImg1 },
+  { id: 3, name: "3Q Nghịch Chuyển Thời Không", image: newGameImg1 },
+  { id: 4, name: "Siêu Đậu Tiến Công", image: newGameImg2 },
+  { id: 5, name: "3Q Nghịch Chuyển Thời Không", image: newGameImg1 },
+  { id: 6, name: "3Q Nghịch Chuyển Thời Không", image: newGameImg1 },
+  { id: 7, name: "3Q Nghịch Chuyển Thời Không", image: newGameImg1 },
+];
+
+export const filterTabs = [
+  { id: "all", label: "Tất cả" },
+  { id: "received", label: "Đã nhận" },
+  { id: "exchange", label: "Đổi code" },
 ];

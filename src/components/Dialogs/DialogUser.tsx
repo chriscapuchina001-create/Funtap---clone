@@ -5,6 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { formatText } from "@/utils/formatUtils";
 import { CircleDotDashed, CirclePoundSterling, LogOut } from "lucide-react";
 
 type User = {
@@ -28,7 +29,7 @@ const DialogUser: React.FC<DialogUserProps> = ({
 }) => {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogContent className="top-[40%] animate-in! slide-in-from-top! duration-300! [&>button]:hidden  w-[452px]">
+      <DialogContent className="top-[40%] animate-in! slide-in-from-top! duration-300! [&>button]:hidden w-[90%] rounded-sm">
         <DialogHeader>
           <DialogTitle className="hidden" />
           <DialogDescription className="hidden" />
@@ -36,19 +37,15 @@ const DialogUser: React.FC<DialogUserProps> = ({
             <div className="flex items-center gap-3 mb-4!">
               <div className="flex flex-row items-center gap-2">
                 <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#f8941e] text-white uppercase">
-                  <p
-                    className="text-white"
-                    style={{ fontFamily: "Roboto, sans-serif", fontSize: 16 }}
-                  >
+                  <p className="text-white font-poppins text-base font-semibold">
                     {user.loginType === "email" ? "G" : "F"}
                   </p>
                 </div>
-                <p className="font-medium text-[#575757]">{user.username}</p>
+                <p className="font-roboto text-[#575757] font-bold text-base line-clamp-1">
+                  {formatText(user.username, 7)}
+                </p>
               </div>
-              <p
-                className="text-[#61616a]"
-                style={{ fontFamily: "Roboto, sans-serif", fontSize: 14 }}
-              >
+              <p className="text-[#61616a] font-roboto text-sm">
                 / ID: {user.id}
               </p>
             </div>
