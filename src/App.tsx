@@ -9,6 +9,8 @@ import GiftcodePage from "@pages/Home/GiftcodePage";
 import SupportPage from "@pages/Home/SupportPage";
 import ProfilePage from "@pages/Home/ProfilePage";
 import HomePage from "@pages/Home/HomePage";
+import EditProfile from "@pages/Auth/EditProfile";
+import SettingPage from "@pages/Profile/SettingPage";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/password-reset" element={<ForgotPassword />} />
+        <Route path="/personal-info" element={<EditProfile />} />
+        <Route path="/settings" element={<SettingPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

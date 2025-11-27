@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button";
 import { Card, CardContent } from "@/components/CardRegister";
 import { Checkbox } from "@/components/Checkbox";
 import Input from "@/components/Input";
@@ -6,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import primacyLogo from "@assets/icons/logo_48.png";
 import logo from "@assets/logo/logo-funtap-white.png";
+import ButtonApp from "@/components/Button";
 
 type FormErrors = {
   email: string;
@@ -180,7 +180,7 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="px-[15px]!">
-                  <Button
+                  <ButtonApp
                     className={`w-full h-10 text-white uppercase font-medium mt-6.5 mb-5 cursor-pointer ${
                       isChecked
                         ? "bg-[#f04406] hover:bg-[#e03d05] opacity-90 hover:opacity-100"
@@ -189,7 +189,7 @@ const RegisterPage = () => {
                     disabled={!isChecked}
                   >
                     Đăng ký
-                  </Button>
+                  </ButtonApp>
                 </div>
               </form>
 
@@ -207,13 +207,13 @@ const RegisterPage = () => {
                   Bạn đã có tài khoản
                 </p>
                 <div className="px-[15px]! w-full">
-                  <Button
+                  <ButtonApp
                     onClick={handleLoginRedirect}
                     variant="secondary"
                     className="w-full h-10 bg-gray-400 hover:bg-gray-500 text-white uppercase font-medium cursor-pointer"
                   >
                     Đăng nhập ngay
-                  </Button>
+                  </ButtonApp>
                 </div>
               </div>
             </CardContent>

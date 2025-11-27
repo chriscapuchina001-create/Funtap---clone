@@ -3,22 +3,27 @@ import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import { useAuthStore } from "@/store/authStore";
 import {
+  BookText,
   BookUser,
   ChartColumnStacked,
-  ChevronRight,
+  CircleChevronRight,
   Columns4,
+  Disc3,
   FilePenLine,
   Gem,
-  Gift,
   History,
   List,
   LogOut,
   Settings,
+  SquareAsterisk,
   User,
 } from "lucide-react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { footerNavItems } from "../../../public/mock-api/homeData";
+import Footer2 from "@/components/Footer2";
+import MenuButton from "@/components/MenuButton";
+import UserInfo from "@/components/UserInfo";
 
 const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
@@ -27,6 +32,30 @@ const ProfilePage: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleEditProfile = () => {
+    if (user) {
+      navigate("/personal-info", {
+        state: {
+          user: user,
+        },
+      });
+    }
+  };
+
+  const handleSetting = () => {
+    if (user) {
+      navigate("/settings", {
+        state: {
+          user: user,
+        },
+      });
+    }
+  };
 
   return (
     <div className="w-full min-h-screen bg-[#F3F4F4] flex flex-col justify-center items-center">
@@ -38,44 +67,46 @@ const ProfilePage: React.FC = () => {
           logout={logout}
         />
 
-        <div className="w-full flex flex-row justify-start items-start gap-1 bg-white py-[11.25px]! px-6! text-xs md:text-[13.5px] font-poppins font-normal">
-          <p className="text-[#7e7e7e]">Trang chủ &gt;</p>
-          <p className="text-[#ee4623]">Tài khoản</p>
-        </div>
+        {isAuthenticated && user && (
+          <div className="w-full flex flex-row justify-start items-start gap-1 py-[11.25px]! px-4! md:px-6! pr-4! md:pr-6! pt-3! bg-white">
+            <div className="flex flex-row items-center gap-1.5 text-xs md:text-[13.5px] font-poppins font-normal">
+              <p className="text-[#7e7e7e]">Trang chủ &gt;</p>
+              <p className="text-[#ee4623]">Tài khoản</p>
+            </div>
+          </div>
+        )}
 
-        <div className="bg-linear-to-r! from-[#ff753a] to-[#fb5f14] clip-path-ellipse! w-full max-w-3xl h-[178px] flex flex-row justify-between items-center z-0 absolute top-24 rounded-bl-[90px] rounded-br-[90px]">
+        <div
+          className={`
+          bg-linear-to-r! from-[#ff753a] to-[#fb5f14] clip-path-ellipse! 
+          w-full max-w-3xl h-[178px] flex flex-row justify-between items-center 
+          z-0 absolute 
+          ${isAuthenticated && user ? "top-24" : "top-14"} 
+          rounded-bl-[90px] rounded-br-[90px]
+        `}
+        >
           <div className="flex flex-row items-center pt-0! md:pt-4! pb-20! pl-7! pr-7! gap-3">
             {isAuthenticated && user ? (
-              <>
-                <div className="w-12.5 h-12.5 flex justify-center items-center bg-linear-to-r bg-[#67AD3F] rounded-full text-white">
-                  {user?.loginType === "email" ? (
-                    <p className="text-[16.66px] font-poppins font-medium">G</p>
-                  ) : (
-                    <p className="text-[16.66px] font-poppins font-medium">F</p>
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <h2 className="text-white text-xl md:text-[22.5px] font-roboto font-semibold">
-                    {user?.username}
-                  </h2>
-                  <p className="text-white text-base md:text-lg font-roboto font-normal">
-                    ID: <span>{user?.id}</span>
-                  </p>
-                </div>
-              </>
+              <UserInfo user={user} />
             ) : (
-              <div className="flex flex-row items-center gap-3">
+              <button
+                className="flex flex-row items-center gap-3"
+                onClick={handleLogin}
+              >
                 <div className="w-12.5 h-12.5 rounded-full bg-[#F3F4F4] flex justify-center items-center">
                   <User size={30} color="#767676" />
                 </div>
                 <h2 className="text-white text-[22px] font-poppins font-semibold">
                   Đăng nhập
                 </h2>
-              </div>
+              </button>
             )}
           </div>
           {isAuthenticated && user && (
-            <button className="pb-20! pr-7! cursor-pointer">
+            <button
+              className="pb-20! pr-7! cursor-pointer"
+              onClick={handleEditProfile}
+            >
               <p className="text-white text-xs md:text-[13.5px] font-poppins font-medium">
                 Cập nhật
               </p>
@@ -86,12 +117,13 @@ const ProfilePage: React.FC = () => {
         {isAuthenticated && user ? (
           <div className="w-full mt-26! bg-white flex flex-col items-center">
             <div className="flex flex-col w-full max-w-[736px] items-center px-4!">
-              <div className="w-full flex flex-col bg-white shadow-md rounded-lg mb-4! py-2! relative">
+              <div className="w-full flex flex-col bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg mb-4! py-2! relative">
                 <MenuButton
                   icon={
                     <Gem color="#BBBBBB" className="w-5 md:w-6 h-5 md:h-6" />
                   }
                   text="Giftcode của tôi"
+                  onClick={() => navigate("/giftcode")}
                 />
                 <MenuButton
                   icon={
@@ -114,7 +146,7 @@ const ProfilePage: React.FC = () => {
                 />
               </div>
 
-              <div className="w-full flex flex-col bg-white shadow-md rounded-lg mb-4! py-2!">
+              <div className="w-full flex flex-col bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg mb-4! py-2!">
                 <MenuButton
                   icon={
                     <Settings
@@ -124,6 +156,7 @@ const ProfilePage: React.FC = () => {
                   }
                   text="Cài đặt"
                   rightText="Mật khẩu & Thanh toán"
+                  onClick={handleSetting}
                 />
                 <MenuButton
                   icon={
@@ -136,7 +169,7 @@ const ProfilePage: React.FC = () => {
                 />
               </div>
 
-              <div className="w-full flex flex-col bg-white shadow-md rounded-lg mb-4! py-2!">
+              <div className="w-full flex flex-col bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg mb-4! py-2!">
                 <MenuButton
                   icon={
                     <List color="#BBBBBB" className="w-5 md:w-6 h-5 md:h-6" />
@@ -165,7 +198,7 @@ const ProfilePage: React.FC = () => {
 
               <div className="w-full mb-4!">
                 <button
-                  className="border-none outline-none w-full bg-white shadow-md rounded-lg cursor-pointer"
+                  className="border-none outline-none w-full bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg cursor-pointer"
                   onClick={() => {
                     logout();
                     navigate("/");
@@ -185,12 +218,57 @@ const ProfilePage: React.FC = () => {
           </div>
         ) : (
           <div className="flex flex-col w-full items-center mt-26! bg-white">
-            <div className="w-full max-w-[736px] flex flex-col bg-white shadow-md rounded-lg mb-4! py-2! relative">
-              <MenuButton icon={<Gift />} text="Hướng dẫn" />
-              <MenuButton icon={<Gift />} text="Tin tức" />
-              <MenuButton icon={<Gift />} text="Hỗ trợ" />
+            <div className="w-full max-w-[736px] relative px-4!">
+              <div className="w-full flex flex-col bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg mb-4! py-2.5!">
+                <MenuButton
+                  icon={
+                    <Disc3 color="#FF753A" className="w-5 md:w-6 h-5 md:h-6" />
+                  }
+                  text="Hướng dẫn"
+                />
+                <MenuButton
+                  icon={
+                    <BookText
+                      color="#FF753A"
+                      className="w-5 md:w-6 h-5 md:h-6"
+                    />
+                  }
+                  text="Tin tức"
+                />
+              </div>
+
+              <div className="w-full flex flex-col bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg mb-4! py-2.5!">
+                <MenuButton
+                  icon={
+                    <CircleChevronRight
+                      color="#FF753A"
+                      className="w-5 md:w-6 h-5 md:h-6"
+                    />
+                  }
+                  text="Playfun"
+                />
+                <MenuButton
+                  icon={
+                    <SquareAsterisk
+                      color="#FF753A"
+                      className="w-5 md:w-6 h-5 md:h-6"
+                    />
+                  }
+                  text="Funcard"
+                />
+              </div>
+
+              <div className="w-full flex flex-col bg-white shadow-[0_2px_4px_rgba(0,0,0,0.16)] rounded-lg mb-8! py-2.5!">
+                <MenuButton
+                  icon={
+                    <Disc3 color="#FF753A" className="w-5 md:w-6 h-5 md:h-6" />
+                  }
+                  text="Hỗ trợ"
+                />
+              </div>
             </div>
-            <Footer />
+
+            <Footer2 />
           </div>
         )}
 
@@ -201,35 +279,6 @@ const ProfilePage: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
-
-type MenuButtonProps = {
-  icon: React.ReactNode;
-  text: string;
-  rightText?: string;
-};
-
-const MenuButton: React.FC<MenuButtonProps> = ({ icon, text, rightText }) => {
-  return (
-    <button className="border-none outline-none bg-transparent hover:bg-[#F7F7F7] flex justify-between items-center cursor-pointer px-4! py-3!">
-      <div className="flex flex-row justify-start items-center gap-3">
-        <p className="flex justify-center items-center">{icon}</p>
-        <p className="text-[#1f1f1f] text-sm md:text-[15.75px] font-poppins font-normal">
-          {text}
-        </p>
-      </div>
-      {rightText ? (
-        <div className="flex flex-row items-center gap-2">
-          <p className="text-[#767676] font-poppins font-normal text-xs md:text-[13.5px]">
-            {rightText}
-          </p>
-          <ChevronRight size={16} color="#D6D6D6" strokeWidth={1.5} />
-        </div>
-      ) : (
-        <ChevronRight size={16} color="#D6D6D6" strokeWidth={1.5} />
-      )}
-    </button>
   );
 };
 

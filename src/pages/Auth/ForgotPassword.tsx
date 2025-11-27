@@ -1,3 +1,4 @@
+import Footer3 from "@/components/Footer3";
 import { ChevronLeft } from "lucide-react";
 import React, { useState } from "react";
 
@@ -8,14 +9,6 @@ const ForgotPassword: React.FC = () => {
     e.preventDefault();
     console.log("Email/Username/Phone:", email);
   };
-
-  const footerLinks = [
-    { label: "Trang chủ", href: "#" },
-    { label: "Funtap", href: "#" },
-    { label: "Báo lỗi", href: "#" },
-    { label: "Điều khoản", href: "#" },
-    { label: "Liên hệ", href: "#" },
-  ];
 
   return (
     <div className="w-full min-h-screen bg-gray-200 flex flex-col">
@@ -101,27 +94,7 @@ const ForgotPassword: React.FC = () => {
         </div>
       </main>
 
-      <footer className="w-full h-12 bg-gray-100 border-t border-gray-300 mt-auto">
-        <div className="w-full max-w-[660px] mx-auto h-full">
-          <ul className="flex items-center flex-row gap-4 h-full px-4! overflow-x-auto">
-            {footerLinks.map((link, index) => (
-              <li key={index} className="list-none shrink-0">
-                <a
-                  href={link.href}
-                  className="text-[#8e8e8e] hover:text-orange-600 transition-colors duration-200 last:mr-0"
-                  style={{
-                    fontSize: 13,
-                    fontFamily: "Roboto, sans-serif",
-                    fontWeight: 400,
-                  }}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </footer>
+      <Footer3 />
     </div>
   );
 };

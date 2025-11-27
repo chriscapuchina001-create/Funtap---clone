@@ -1,29 +1,61 @@
-import * as React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "secondary";
+interface ButtonProps {
+  type?: "button" | "submit" | "reset";
+  children: React.ReactNode;
+  isLoading?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+  className?: string;
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", ...props }, ref) => {
-    return (
-      <button
-        className={cn(
-          "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-          variant === "default" &&
-            "bg-primary text-primary-foreground hover:bg-primary/90",
-          variant === "secondary" &&
-            "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Button.displayName = "Button";
+const ButtonApp: React.FC<ButtonProps> = ({
+  type = "button",
+  children,
+  isLoading = false,
+  disabled = false,
+  onClick,
+  className = "",
+  variant = "primary",
+  size = "md",
+}) => {
+  const baseClasses =
+    "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-[4px] text-white uppercase cursor-pointer transition-colors duration-200";
 
-export { Button };
+  const variantClasses = {
+    primary: "bg-[#f04406] hover:bg-[#e03d05]",
+    secondary: "bg-[#e0e0e0] hover:bg-gray-700",
+    outline:
+      "bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50",
+  };
+
+  const sizeClasses = {
+    sm: "py-1 px-3 text-xs",
+    md: "py-2 px-4 text-sm",
+    lg: "py-3 px-6 text-base",
+  };
+
+  const isDisabled = isLoading || disabled;
+
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={isDisabled}
+      className={cn(
+        baseClasses,
+        variantClasses[variant],
+        sizeClasses[size],
+        isDisabled && "opacity-50 cursor-not-allowed",
+        className
+      )}
+    >
+      {isLoading ? "Đang đăng nhập..." : children}
+    </button>
+  );
+};
+
+export default ButtonApp;

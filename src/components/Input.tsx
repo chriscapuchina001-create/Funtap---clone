@@ -9,9 +9,10 @@ type InputProps = {
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
-  className?: string;
+  wrapperClassName?: string;
+  inputClassName?: string;
   error?: string;
-};
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">;
 
 const Input: React.FC<InputProps> = ({
   type,
@@ -21,8 +22,10 @@ const Input: React.FC<InputProps> = ({
   placeholder = "",
   required = false,
   disabled = false,
-  className = "",
+  wrapperClassName = "",
+  inputClassName = "",
   error = "",
+  ...rest
 }) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -38,9 +41,10 @@ const Input: React.FC<InputProps> = ({
   };
 
   return (
-    <div className={`${className}`}>
+    <div className={`${wrapperClassName}`}>
       <div className="relative">
         <input
+          {...rest}
           aria-label={label}
           type={getInputType()}
           value={value}
@@ -49,15 +53,12 @@ const Input: React.FC<InputProps> = ({
           required={required}
           disabled={disabled}
           className={`
-            font-display w-full py-2 border-b-2 focus:border-[#F04308] outline-none text-[#000000] pr-8.5
+            font-roboto font-normal text-base w-full py-2 border-b-2 focus:border-[#F04308] outline-none text-[#000000] pr-8.5
             ${error ? "border-red-500" : "border-gray-300"}
             ${disabled ? "bg-transparent opacity-50" : "bg-transparent"}
+            ${inputClassName}
+            ${rest.className || ""}
           `}
-          style={{
-            fontFamily: "Roboto, sans-serif",
-            fontWeight: 400,
-            fontSize: 16,
-          }}
         />
 
         {type === "password" && (
@@ -72,14 +73,7 @@ const Input: React.FC<InputProps> = ({
         )}
       </div>
       {error && (
-        <p
-          className="mt-2! text-sm text-red-600"
-          style={{
-            fontFamily: "Roboto, sans-serif",
-            fontWeight: 500,
-            fontSize: 12,
-          }}
-        >
+        <p className="mt-2! text-red-600 font-roboto font-medium text-xs">
           {error}
         </p>
       )}

@@ -81,14 +81,7 @@ const LoginPage = () => {
         <div className="w-full max-w-[480px] absolute top-[-100px] px-2.5!">
           <div className="w-full bg-white flex flex-col items-center justify-center py-[25px]! px-[15px]! rounded-[6px] shadow-xl">
             <div className="w-full rounded-md px-[15px] pb-[25px]">
-              <h2
-                className="text-center text-black mb-10! mt-1!"
-                style={{
-                  fontFamily: "Roboto, sans-serif",
-                  fontSize: 20,
-                  fontWeight: 400,
-                }}
-              >
+              <h2 className="text-center text-black mb-10! mt-1! font-roboto text-xl font-normal">
                 Đăng nhập
               </h2>
               <form className="flex flex-col gap-[30px]" onSubmit={handleLogin}>

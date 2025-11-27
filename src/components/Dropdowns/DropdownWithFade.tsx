@@ -9,6 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import { CheckCheck } from "lucide-react";
 import React from "react";
+import notificationImg from "@assets/icons/notificationImg.svg";
 
 interface DropdownItem {
   label: string;
@@ -25,6 +26,7 @@ interface DropdownWithFadeProps {
   align?: "start" | "center" | "end";
   side?: "top" | "right" | "bottom" | "left";
   className?: string;
+  sideOffset?: number;
 }
 
 export function DropdownWithFade({
@@ -33,7 +35,8 @@ export function DropdownWithFade({
   label,
   align = "end",
   side = "bottom",
-  className,
+  className = "mt-4.5!",
+  sideOffset = 5,
 }: DropdownWithFadeProps) {
   return (
     <DropdownMenu>
@@ -41,8 +44,9 @@ export function DropdownWithFade({
       <DropdownMenuContent
         align={align}
         side={side}
+        sideOffset={sideOffset}
         className={cn(
-          "w-[365px] h-[667px] rounded-[5px] border! border-[#f4f4f4]! bg-white shadow-md z-50",
+          "flex flex-col absolute md:relative -left-31 md:left-33 w-full min-w-[255px] md:min-w-[365px] min-h-[357px] md:min-h-[667px] rounded-[5px] border! border-[#f4f4f4]! bg-white shadow-md z-50",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -53,27 +57,13 @@ export function DropdownWithFade({
           className
         )}
       >
-        <div className="flex flex-row items-center justify-between px-5! py-4! border-b! border-[#e5e5ea]!">
-          <p
-            className="text-[#1a1a1a]"
-            style={{
-              fontSize: 14,
-              fontWeight: 700,
-              fontFamily: "Roboto, sans-serif",
-            }}
-          >
+        <div className="flex flex-row items-center justify-between px-2.5! md:px-5! py-4! border-b! border-[#e5e5ea]!">
+          <p className="text-[#1a1a1a] text-sm font-bold font-roboto">
             Thông báo
           </p>
           <div className="flex flex-row items-center gap-1">
             <CheckCheck size={20} color="#c7c7cc" />
-            <p
-              className="text-[#c7c7cc]"
-              style={{
-                fontSize: 14,
-                fontWeight: 700,
-                fontFamily: "Roboto, sans-serif",
-              }}
-            >
+            <p className="text-[#c7c7cc] text-[13px] md:text-sm font-bold font-roboto">
               Đánh dấu đã đọc
             </p>
           </div>
@@ -86,23 +76,33 @@ export function DropdownWithFade({
             <DropdownMenuSeparator />
           </>
         )}
-        {items.map((item, index) => (
-          <DropdownMenuItem
-            key={index}
-            onClick={item.onClick}
-            disabled={item.disabled}
-            className={cn(
-              "flex cursor-pointer items-center gap-2 rounded-sm px-3! py-3! text-sm outline-none transition-colors",
-              "focus:bg-gray-100 focus:text-gray-900",
-              "data-disabled:pointer-events-none data-disabled:opacity-50",
-              item.destructive
-                ? "text-red-600 focus:bg-red-50 focus:text-red-700"
-                : "text-gray-700"
-            )}
-          >
-            <span className="flex-1">{item.label}</span>
-          </DropdownMenuItem>
-        ))}
+        {items.length === 0 ? (
+          <div className="h-full flex flex-col items-center justify-center mt-7! md:mt-40! gap-3">
+            <img src={notificationImg} alt="notificationImg" />
+            <p className="text-sm font-roboto text-[#9c9c9c] font-normal">
+              Chưa có thông báo mới
+            </p>
+          </div>
+        ) : (
+          items.map((item, index) => (
+            <DropdownMenuItem
+              key={index}
+              onClick={item.onClick}
+              disabled={item.disabled}
+              className={cn(
+                "flex cursor-pointer items-center gap-2 rounded-sm px-3! py-3! text-sm outline-none transition-colors",
+                "focus:bg-gray-100 focus:text-gray-900",
+                "data-disabled:pointer-events-none data-disabled:opacity-50",
+                item.destructive
+                  ? "text-red-600 focus:bg-red-50 focus:text-red-700"
+                  : "text-gray-700"
+              )}
+            >
+              {item.icon && <span>{item.icon}</span>}
+              <span className="flex-1">{item.label}</span>
+            </DropdownMenuItem>
+          ))
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

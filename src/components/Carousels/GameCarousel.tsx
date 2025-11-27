@@ -45,7 +45,7 @@ export function UserGamesCarousel() {
           }}
           className="w-full"
         >
-          <CarouselContent className="pt-[15px]! pl-2!">
+          <CarouselContent className="pt-[15px]! pl-0! md:pl-2!">
             {displayGames.map((game, index) => (
               <CarouselItem
                 key={index}

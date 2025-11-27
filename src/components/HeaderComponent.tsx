@@ -26,7 +26,7 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
 }) => {
   return (
     <header className="sticky top-0 left-0 z-40 w-full grid place-items-center">
-      <div className="w-full flex justify-between items-center px-4 py-2 h-14 bg-white border-b! border-[#eeeeee]! shadow-md">
+      <div className="w-full flex justify-between items-center h-14 bg-white border-b! border-[#eeeeee]! shadow-md">
         <div className="flex flex-row items-center gap-1">
           <SheetHomePage />
 

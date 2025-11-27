@@ -67,14 +67,14 @@ const GiftcodePage: React.FC = () => {
           logout={logout}
         />
 
-        <div className="w-full flex flex-row justify-between items-start gap-1 py-[11.25px]! px-6! pr-4! md:pr-6! pt-3!">
-          <div className="flex flex-row items-center gap-1.5 text-[13.5px] font-poppins font-normal">
+        <div className="w-full flex flex-row justify-between items-start gap-1 py-[11.25px]! px-4! md:px-6! pr-4! md:pr-6! pt-3!">
+          <div className="flex flex-row items-center gap-1.5 text-xs md: font-poppins font-normal">
             <p className="text-[#7e7e7e]">Trang chủ &gt;</p>
             <p className="text-[#ee4623]">Giftcode</p>
           </div>
           <button className="flex flex-row items-center gap-1.5 cursor-pointer text-[#ee4623]">
             <Clock size={20} />
-            <p className="text-[#ee4623] text-[13.5px] font-poppins font-normal hidden md:block">
+            <p className="text-[#ee4623] text-xs md:text-[13.5px] font-poppins font-normal hidden md:block">
               Lịch sử đổi code
             </p>
           </button>
