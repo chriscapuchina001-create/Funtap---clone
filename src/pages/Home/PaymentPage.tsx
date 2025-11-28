@@ -28,6 +28,15 @@ const PaymentPage = () => {
     setIsVisible(false);
   };
 
+  const handleGameClick = (game: { image: string; name: string }) => {
+    navigate("/payment-game", {
+      state: {
+        gameImage: game.image,
+        gameName: game.name,
+      },
+    });
+  };
+
   return (
     <div className="w-full min-h-screen bg-[#F3F4F4] flex flex-col justify-center items-center">
       <div className="w-full max-w-3xl">
@@ -107,9 +116,9 @@ const PaymentPage = () => {
                       `;
                       return (
                         <li key={index} className={itemClass}>
-                          <a
-                            href="#"
-                            className="block no-underline text-gray-800"
+                          <button
+                            onClick={() => handleGameClick(game)}
+                            className="block no-underline text-gray-800 w-full h-full cursor-pointer bg-transparent border-none"
                           >
                             <div className="flex flex-col justify-center items-center py-[18px]! gap-2.5">
                               <img
@@ -121,7 +130,7 @@ const PaymentPage = () => {
                                 {game.name}
                               </p>
                             </div>
-                          </a>
+                          </button>
                         </li>
                       );
                     })}

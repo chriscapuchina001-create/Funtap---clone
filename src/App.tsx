@@ -11,6 +11,7 @@ import ProfilePage from "@pages/Home/ProfilePage";
 import HomePage from "@pages/Home/HomePage";
 import EditProfile from "@pages/Auth/EditProfile";
 import SettingPage from "@pages/Profile/SettingPage";
+import PaymentGamePage from "@pages/Payment/PaymentGamePage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/password-reset" element={<ForgotPassword />} />
         <Route path="/personal-info" element={<EditProfile />} />
         <Route path="/settings" element={<SettingPage />} />
+        <Route path="/payment-game" element={<PaymentGamePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
